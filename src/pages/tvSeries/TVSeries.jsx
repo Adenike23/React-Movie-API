@@ -31,10 +31,9 @@ const TVSeries = () => {
         <div className='bg-slate-900 min-h-[100vh]'>
             <h1 className='text-white text-3xl flex items-center justify-center pt-7 animate-marquee'>TV SERIES...</h1>
             <div className='w-[20%] mx-auto'>{loading === true ? <img src={loadingImage}/> : ''}</div>
-                <div className="grid grid-col-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 sm:gap-5 ps-6 py-10 pt-[5rem] text-white bg-slate-900 sm:ps-[10rem] sm:pe-6">
+                <div className="grid grid-col-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 sm:gap-5 md:ps-6 py-10 pt-[5rem] text-white bg-slate-900">
                     {TVSeriesMovies.map(eachTVSeriesMovie =>(
-                        <div onClick={()=> navigate(`/moviedetails/${eachTVSeriesMovie.id}`)} className='rounded-lg hover:scale-105 duration-1000 cursor-pointer'>
-                        <div className="relative top-10 left-[16rem] hover:text-red-600"><i class="ri-bookmark-line"></i></div>
+                        <div onClick={()=> navigate(`/moviedetails/${eachTVSeriesMovie.id}`)} className='rounded-lg hover:scale-105 duration-1000 cursor-pointer sm:w-[100%] mx-auto'>
                         <img src={`${base_url}${eachTVSeriesMovie.poster_path}`} alt="" className='rounded-lg'/>
                         <div className='p-2'>
                             <div className="flex gap-3">
@@ -45,7 +44,10 @@ const TVSeries = () => {
                                 </div>
                                 <h3>{eachTVSeriesMovie.vote_average}</h3>
                             </div>
-                            <h2 className="title">{eachTVSeriesMovie.title}</h2>
+                            <div className="flex justify-between items-center">
+                                <h2 className="title">{eachTVSeriesMovie.title}</h2>
+                                <div className="hover:text-red-600"><i class="ri-bookmark-line"></i></div>
+                            </div>
                         </div>
                     </div> 
                     ))}

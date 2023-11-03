@@ -26,7 +26,7 @@ const Home = () => {
         // setMovieContent(data.results.slice(0, 6))
         if(response) setLoading(false)
     }
-    console.log(movieContent);
+    // console.log(movieContent);
     useEffect(()=>{
         getMovies()
     }, [])
