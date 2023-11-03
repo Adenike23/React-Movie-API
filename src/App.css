@@ -1,0 +1,23 @@
+.background{
+    /* background:linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url(/src/assets/images/movie.webp); */
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat !important;
+}
+.released{
+    color: blue;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.overview, .rating{
+    display: block;
+    color:  blue;
+    font-size: 20px
+}
+.language{
+    margin-right: 10px;
+    font-weight: bold;
+}
+.footer_main{
+    font-family: 'Roboto Mono', monospace;
+}
