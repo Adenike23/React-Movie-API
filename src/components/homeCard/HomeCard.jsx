@@ -11,7 +11,6 @@ const HomeCard = ({movie}) => {
        
        <div onClick={()=> navigate(`/moviedetails/${movie.id}`)} className='relative cursor-pointer'>
             <img src={`${base_url}${movie.backdrop_path}`} alt="" className='rounded-xl opacity-75 h-[60vh] object-cover'/>
-            <div className="absolute top-6 right-10"><i class="ri-bookmark-line"></i></div>
             <div className="absolute bottom-5 left-10">
                 <div className="flex gap-3">
                     <h1>{movie.release_date.split('').splice(0, 4).join('')}</h1>

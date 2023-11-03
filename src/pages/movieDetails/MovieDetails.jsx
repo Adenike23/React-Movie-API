@@ -24,7 +24,7 @@ const MovieDetails = () => {
 
   return (
     <div className='bg-slate-900 py-10 background overflow-hidden' style={{background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${base_url}${movie.backdrop_path}`}}>
-      <button onClick={()=>navigate('/')} className='relative -top-8 left-5 py-2 px-4 bg-indigo-950 text-white font-semibold rounded-lg shadow-md hover:scale-110 duration-700'><i class="ri-arrow-left-line"></i>Back</button>
+      <button onClick={()=>navigate('/')} className='relative -top-8 left-5 py-2 px-4 bg-slate-900 text-white font-semibold rounded-lg shadow-md hover:scale-110 duration-700'><i class="ri-arrow-left-line"></i>Back</button>
         <div className='flex flex-col md:flex-row items-center p-10 gap-12 text-white md:px-[7rem] lg:gap-10 xl:px-[15rem] xl:gap-20'>
         <img className='rounded-lg ms-[1rem]' src={`${base_url}${movie.poster_path}`} alt="" />
         <div>
