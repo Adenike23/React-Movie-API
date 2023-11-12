@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-const PopularMoviesCard = ({popular, popularMovie, onBookmarkToggle}) => {
+const PopularMoviesCard = ({popular, popularMovie}) => {
     const base_url = "https://image.tmdb.org/t/p/w300/"
     const navigate = useNavigate()
     const [isBookmarked, setIsBookmarked] = useState(false);
@@ -10,12 +10,10 @@ const PopularMoviesCard = ({popular, popularMovie, onBookmarkToggle}) => {
 
   const handleBookmarkClick = (id) => {
     setIsBookmarked(!isBookmarked);
-    // onBookmarkToggle(popularMovie.id); // Pass the movie ID to handle the bookmark toggle in the parent component
-    // console.log(id);
-    // console.log(popular);
     const movieBookmark = popular.find(movie => movie.id === +id) 
     bookmarkedMovies.push(movieBookmark)
     localStorage.setItem('movieContent', JSON.stringify(bookmarkedMovies))
+    // location.reload()
   };
 
 
@@ -24,7 +22,7 @@ const PopularMoviesCard = ({popular, popularMovie, onBookmarkToggle}) => {
   return (
     <div>
         <div className='rounded-lg cursor-pointer'>
-                <img src={`${base_url}${popularMovie.poster_path}`} alt="" onClick={()=> navigate(`/moviedetails/${popularMovie.id}`)} className='rounded-lg w-[100%] hover:scale-105 duration-1000'/>
+                <img src={`${base_url}${popularMovie.poster_path}`} alt="movie-image" onClick={()=> navigate(`/moviedetails/${popularMovie.id}`)} className='rounded-lg w-[100%] hover:scale-105 duration-1000'/>
                 <div className='p-2'>
                     <div className="flex gap-3">
                         <h1>{popularMovie.release_date.split('').splice(0, 4).join('')}</h1>
@@ -36,7 +34,7 @@ const PopularMoviesCard = ({popular, popularMovie, onBookmarkToggle}) => {
                     </div>
                     <div className='flex justify-between items-center'>
                       <h2 className="title">{popularMovie.title}</h2>
-                      <div onClick={() => handleBookmarkClick(`${popularMovie.id}`)} className="">{
+                      <div onClick={() => handleBookmarkClick(`${popularMovie.id}`)}>{
                       isBookmarked ? <i class="ri-bookmark-fill"></i> : <i class="ri-bookmark-line"></i>
                       }</div>
                     </div>

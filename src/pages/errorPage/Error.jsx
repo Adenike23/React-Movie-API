@@ -1,7 +1,7 @@
 
 const Error = () => {
   return (
-    <div>ERROR. THIS PAGE DOES NOT EXIST</div>
+    <div className="h-[100vh]">ERROR. THIS PAGE DOES NOT EXIST</div>
   )
 }
 

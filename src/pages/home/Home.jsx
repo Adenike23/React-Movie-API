@@ -4,7 +4,6 @@ import PopularMoviesCard from '../popularMovies/PopularMovies'
 import loadingImage from '../../assets/images/loading-img.gif'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-// import image2 from '../../assets/images/movie.webp'
 
 
 const Home = () => {
@@ -26,7 +25,7 @@ const Home = () => {
         // setMovieContent(data.results.slice(0, 6))
         if(response) setLoading(false)
     }
-    // console.log(movieContent);
+    console.log(movieContent);
     useEffect(()=>{
         getMovies()
     }, [])

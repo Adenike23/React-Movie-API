@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-// 615656
+
 const MovieDetails = () => {
   const base_url = "https://image.tmdb.org/t/p/w400/"
   const {movie_id} = useParams()

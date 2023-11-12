@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loadingImage from '../../assets/images/loading-img.gif'
-// import Bookmark from '../bookmark/Bookmark'
 
 
 
@@ -10,6 +9,9 @@ const TVSeries = () => {
     const navigate = useNavigate()
     const [TVSeriesMovies, setTVSeriesMovies] = useState([])
     const [loading, setLoading] = useState(false)
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const bookmarkedMovies = JSON.parse(localStorage.getItem('movieContent')) || []
+
     
     const getTVSeries = async ()=>{
         setLoading(true)
@@ -27,14 +29,23 @@ const TVSeries = () => {
         getTVSeries()
     }, [])
 
+
+    const handleBookmarkClick = (id) => {
+        setIsBookmarked(!isBookmarked);
+        const movieBookmark = TVSeriesMovies.find(movie => movie.id === +id) 
+        bookmarkedMovies.push(movieBookmark)
+        localStorage.setItem('movieContent', JSON.stringify(bookmarkedMovies))
+        // location.reload()
+      };
+
   return (
         <div className='bg-slate-900 min-h-[100vh]'>
             <h1 className='text-white text-3xl flex items-center justify-center pt-7 animate-marquee'>TV SERIES...</h1>
             <div className='w-[20%] mx-auto'>{loading === true ? <img src={loadingImage}/> : ''}</div>
                 <div className="grid grid-col-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 sm:gap-5 py-10 pt-[5rem] text-white bg-slate-900 sm:ps-[10rem] sm:pe-6">
                     {TVSeriesMovies.map(eachTVSeriesMovie =>(
-                        <div onClick={()=> navigate(`/moviedetails/${eachTVSeriesMovie.id}`)} className='rounded-lg hover:scale-105 duration-1000 cursor-pointer sm:w-[100%] mx-auto'>
-                        <img src={`${base_url}${eachTVSeriesMovie.poster_path}`} alt="" className='rounded-lg'/>
+                        <div className='rounded-lg sm:w-[100%] mx-auto'>
+                        <img src={`${base_url}${eachTVSeriesMovie.poster_path}`} alt="movie-image" onClick={()=> navigate(`/moviedetails/${eachTVSeriesMovie.id}`)} className='rounded-lg hover:scale-105 duration-1000 cursor-pointer'/>
                         <div className='p-2'>
                             <div className="flex gap-3">
                                 <h1>{eachTVSeriesMovie.release_date.split('').splice(0, 4).join('')}</h1>
@@ -46,7 +57,9 @@ const TVSeries = () => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <h2 className="title">{eachTVSeriesMovie.title}</h2>
-                                <div className="hover:text-red-600"><i class="ri-bookmark-line"></i></div>
+                                <div onClick={() => handleBookmarkClick(`${eachTVSeriesMovie.id}`)}>{
+                                isBookmarked ? <i class="ri-bookmark-fill"></i> : <i class="ri-bookmark-line"></i>
+                                }</div>
                             </div>
                         </div>
                     </div> 

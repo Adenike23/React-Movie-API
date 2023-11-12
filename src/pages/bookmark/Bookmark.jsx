@@ -8,18 +8,13 @@ const Bookmark = () => {
   const [uniqueArray, setUniqueArray] = useState([])
   const bookmarkedMovies = JSON.parse(localStorage.getItem('movieContent'))
  
-  // const removeBookmarkedMovie = (id) => {
-  //   const updatedBookmarkedMovies = uniqueArray.filter(movie => movie.id !== id)
-           
-  //   console.log(uniqueObjects);
-  // };
+
   const removeBookmarkedMovie = (id) => {
-    uniqueArray && uniqueArray.filter(movie => {
-      if(movie.id === id) {
-        localStorage.removeItem('movie', JSON.stringify(bookmarkedMovies))
-        console.log(movie.id);
-      }
-    })
+    let index = uniqueArray.findIndex(movie => movie.id === id);
+    uniqueArray.splice(index, 1);
+    localStorage.setItem('movieContent', JSON.stringify(uniqueArray));
+    location.reload()
+    // console.log(id);
   }
 
   const uniqueObjects = new Set(bookmarkedMovies)
@@ -30,8 +25,6 @@ const Bookmark = () => {
       uniqueArray.push(obj); // Add the object to the unique array
     }
   })
-  // console.log(uniqueArray);
-  // console.log(uniqueObjects);
   useEffect(() => {
     setUniqueArray(uniqueArray)
   }, [])
@@ -39,7 +32,7 @@ const Bookmark = () => {
     <div className='bg-slate-900'>
           <p className='text-2xl text-white flex justify-center items-center'>Bookmarks</p>
         <div className="bg-slate-900 px-12 text-white sm:ps-[10rem] min-h-[100vh] pt-[5rem]">
-          {uniqueArray.length === 0 ? <p className='absolute left-[50%] top-[50%] -translate-x-[50%]'>NO MOVIES FOUND</p> : 
+          {uniqueArray.length === 0 ? <p className='absolute left-[50%] top-[50%] -translate-x-[50%]'>NO MOVIE FOUND</p> : 
           <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>{uniqueArray.map(movie => (
             <div className='rounded-lg cursor-pointer'>
             <img src={`${base_url}${movie.poster_path}`} alt="" onClick={()=> navigate(`/moviedetails/${movie.id}`)} className='rounded-lg  hover:scale-105 duration-1000'/>
@@ -54,7 +47,7 @@ const Bookmark = () => {
                 </div>
                 <div className="flex justify-between items-center gap-5">
                   <h2 className="title">{movie.title}</h2>
-                  <div onClick={() => removeBookmarkedMovie(movie.id)}><i class="ri-bookmark-line"></i></div>
+                  <div onClick={() => removeBookmarkedMovie(movie.id)}><i class="ri-bookmark-fill"></i></div>
                 </div>
             </div>
         </div> 
