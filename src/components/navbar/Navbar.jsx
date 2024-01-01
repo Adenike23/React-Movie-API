@@ -14,13 +14,17 @@ const Navbar = () => {
       </div>
       {toggleMobileNav && <div className='flex w-[80%] text-white items-center justify-around mx-auto sm:hidden'>
       {location.pathname=== '/' ?  <div onClick={()=> navigate('/')} title='now playing' className='py-6 text-4xl cursor-pointer text-indigo-800'><i class="ri-clapperboard-fill"></i></div>
-            :  <div onClick={()=> navigate('/')} title='now playing' className='py-6 text-4xl cursor-pointer'><i class="ri-clapperboard-fill"></i></div>}
+            :  <div onClick={()=> {navigate('/') 
+            setToggleMobileNav(!toggleMobileNav)}} title='now playing' className='py-6 text-4xl cursor-pointer'><i class="ri-clapperboard-fill"></i></div>}
             {location.pathname === '/topratedmovies' ?  <div onClick={()=> navigate('/topratedmovies')} title='top-rated movies' className='film py-1 text-2xl cursor-pointer text-indigo-800'><i class="ri-film-fill"></i></div>
-            :  <div onClick={()=> navigate('/topratedmovies')} title='top-rated movies' className='film py-1 text-2xl cursor-pointer'><i class="ri-film-fill"></i></div>}
+            :  <div onClick={()=> {navigate('/topratedmovies')
+            setToggleMobileNav(!toggleMobileNav)}} title='top-rated movies' className='film py-1 text-2xl cursor-pointer'><i class="ri-film-fill"></i></div>}
             {location.pathname === '/tv-series' ? <div onClick={()=> navigate('/tv-series')} title='tv-series' className='py-5 text-2xl text-indigo-800 cursor-pointer'><i class="ri-tv-fill"></i></div>
-            : <div onClick={()=> navigate('/tv-series')} title='tv-series' className='py-5 text-2xl cursor-pointer'><i class="ri-tv-fill"></i></div>}
+            : <div onClick={()=> {navigate('/tv-series')
+            setToggleMobileNav(!toggleMobileNav)}} title='tv-series' className='py-5 text-2xl cursor-pointer'><i class="ri-tv-fill"></i></div>}
             {location.pathname === '/bookmark' ? <div onClick={()=> navigate('/bookmark')} title='bookmark' className='py-3 text-2xl text-indigo-800 cursor-pointer'><i class="ri-bookmark-fill"></i></div>
-            : <div onClick={()=> navigate('/bookmark')} title='bookmark' className='py-3 text-2xl cursor-pointer'><i class="ri-bookmark-fill"></i></div>}
+            : <div onClick={()=> {navigate('/bookmark')
+            setToggleMobileNav(!toggleMobileNav)}} title='bookmark' className='py-3 text-2xl cursor-pointer'><i class="ri-bookmark-fill"></i></div>}
         </div>}
     </div>
   )
